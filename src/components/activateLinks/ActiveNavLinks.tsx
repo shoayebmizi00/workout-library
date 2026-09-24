@@ -7,43 +7,49 @@ const ActiveNavLink = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex gap-4 text-lg font-bold">
+    <>
+      {/* Home */}
+      <li>
+        <Link
+          href="/"
+          className={
+            pathname === "/"
+              ? "text-[#C2F800] text-lg font-bold"
+              : "text-gray-100 text-lg"
+          }
+        >
+          Home
+        </Link>
+      </li>
 
-      <Link
-        href="/"
-        className={
-          pathname === "/"
-            ? "text-[#C2F800]"
-            : "text-gray-100"
-        }
-      >
-        Home
-      </Link>
+      {/* Workout */}
+      <li>
+        <Link
+          href="/pages/workout"
+          className={
+            pathname === "/pages/workout"
+              ? "text-[#C2F800] text-lg font-bold"
+              : "text-gray-100 text-lg"
+          }
+        >
+          Workout
+        </Link>
+      </li>
 
-
-      <Link
-        href="/pages/workout"
-        className={
-          pathname === "/pages/workout"
-            ? "text-[#C2F800]"
-            : "text-gray-100"
-        }
-      >
-        Workout
-      </Link>
-
-
-      <Link
-        href="/pages/myplan"
-        className={
-          pathname === "/pages/myplan"
-            ? "text-[#C2F800]"
-            : "text-gray-100"
-        }
-      >
-        My Plan
-      </Link>
-    </div>
+      {/* My Plan */}
+      <li>
+        <Link
+          href="/pages/myplan"
+          className={
+            pathname === "/pages/myplan"
+              ? "text-[#C2F800] text-lg font-bold"
+              : "text-gray-100 text-lg"
+          }
+        >
+          My Plan
+        </Link>
+      </li>
+    </>
   );
 };
 
