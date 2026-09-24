@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-[#090A0D]">
-      <div className="container mx-auto flex justify-between items-center pt-10 pb-10">
+      <div className="container mx-auto flex justify-between items-center pt-5 pb-5">
         <div className="flex items-center">
           <Image src="/logo.png" alt="Logo" width={25} height={25} />
           <h3 className="text-xl">FITLOG</h3>
