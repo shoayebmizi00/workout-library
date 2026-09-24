@@ -68,7 +68,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/pages/myplan"
+            href="/pages/saved"
             className="badge gap-2 p-4 text-lg font-semibold"
           >
             Saved

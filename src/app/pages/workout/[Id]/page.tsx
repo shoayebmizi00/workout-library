@@ -4,8 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   FaArrowLeft,
-  FaBookmark,
-  FaCalendarPlus,
 } from "react-icons/fa";
 import { IWorkout } from "@/app/type";
 import TodaysPlanBtn from "@/components/TodaysPlanBtn";

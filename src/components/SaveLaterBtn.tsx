@@ -3,7 +3,7 @@ import { IWorkout } from "@/app/type";
 import { WorkoutContext } from "@/context/WorkoutContext";
 import React from "react";
 import { FaBookmark } from "react-icons/fa";
-import { toast } from "react-toastify/unstyled";
+import { toast } from "react-toastify";
 
 const SaveLaterBtn = ({ workout }: { workout: IWorkout }) => {
   const { setSavedWorkouts } = React.useContext(WorkoutContext) as {

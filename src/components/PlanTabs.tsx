@@ -2,15 +2,31 @@
 
 import React, { useState } from "react";
 
-const PlanTabs = () => {
-  const [activeTab, setActiveTab] = useState<"today" | "saved">("today");
+type PlanTab = "today" | "saved";
+
+const PlanTabs = ({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab?: PlanTab;
+  onTabChange?: (tab: PlanTab) => void;
+}) => {
+  const [internalTab, setInternalTab] = useState<PlanTab>("today");
+  const currentTab = activeTab ?? internalTab;
+
+  const handleTabChange = (tab: PlanTab) => {
+    if (onTabChange) {
+      onTabChange(tab);
+    }
+    setInternalTab(tab);
+  };
 
   return (
     <div className="inline-flex w-fit rounded-xl bg-[#191B20] p-1">
       <button
-        onClick={() => setActiveTab("today")}
+        onClick={() => handleTabChange("today")}
         className={`rounded-lg px-4 py-2 text-sm cursor-pointer font-medium transition-colors ${
-          activeTab === "today"
+          currentTab === "today"
             ? "bg-[#0D0F12] text-[#C2F800]"
             : "text-gray-400 hover:text-white"
         }`}
@@ -19,9 +35,9 @@ const PlanTabs = () => {
       </button>
 
       <button
-        onClick={() => setActiveTab("saved")}
+        onClick={() => handleTabChange("saved")}
         className={`rounded-lg px-4 py-2 text-sm cursor-pointer font-medium transition-colors ${
-          activeTab === "saved"
+          currentTab === "saved"
             ? "bg-[#0D0F12] text-[#C2F800]"
             : "text-gray-400 hover:text-white"
         }`}
