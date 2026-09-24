@@ -8,6 +8,8 @@ import {
   FaCalendarPlus,
 } from "react-icons/fa";
 import { IWorkout } from "@/app/type";
+import TodaysPlanBtn from "@/components/TodaysPlanBtn";
+import SaveLaterBtn from "@/components/SaveLaterBtn";
 
 const fitLogResponse = async (): Promise<IWorkout[]> => {
   const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -197,15 +199,9 @@ const WorkOutDetailsPage = async ({
             <div className="mt-auto pt-7">
               <div className="flex flex-wrap gap-3">
 
-                <button className="inline-flex items-center gap-2 rounded-xl bg-[#C2F800] px-5 py-3 text-sm font-semibold text-black transition-all duration-300 hover:bg-[#D5FF3D] hover:shadow-lg hover:shadow-[#C2F800]/20 cursor-pointer">
-                  <FaCalendarPlus />
-                  {`Add to today's plan`}
-                </button>
+                <TodaysPlanBtn workout={workout}/>
 
-                <button className="inline-flex items-center gap-2 rounded-xl border border-gray-500 px-5 py-3 text-sm font-semibold text-gray-200 transition-all duration-300 hover:border-[#C2F800] hover:text-[#C2F800] cursor-pointer">
-                  <FaBookmark />
-                  Save for later
-                </button>
+                <SaveLaterBtn workout={workout}/>
 
               </div>
             </div>

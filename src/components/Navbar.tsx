@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ActiveNavLink from "./activateLinks/ActiveNavLinks";
+import MyPlanCount from "./counter/MyPlanCount";
+import SaveLaterCount from "./counter/SaveLaterCount";
 
 const Navbar = () => {
   const Nav_Links = (
@@ -15,11 +17,7 @@ const Navbar = () => {
       <div className="container mx-auto navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden"
-            >
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 aria-label="Menu"
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,24 +53,28 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {Nav_Links}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{Nav_Links}</ul>
         </div>
 
         <div className="navbar-end gap-4">
           <Link
             href="/pages/myplan"
-            className="badge p-4 text-lg font-semibold"
+            className="badge gap-2 p-4 text-lg font-semibold"
           >
             Plan
+            <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#C2F800] px-1 text-xs font-bold text-black">
+              <MyPlanCount />
+            </span>
           </Link>
 
           <Link
             href="/pages/myplan"
-            className="badge p-4 text-lg font-semibold"
+            className="badge gap-2 p-4 text-lg font-semibold"
           >
             Saved
+            <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#C2F800] px-1 text-xs font-bold text-black">
+              <SaveLaterCount />
+            </span>
           </Link>
         </div>
       </div>

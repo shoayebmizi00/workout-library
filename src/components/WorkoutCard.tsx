@@ -6,6 +6,7 @@ import { FaFire, FaStar } from "react-icons/fa";
 import { MdAccessTime } from "react-icons/md";
 
 const WorkoutCard = ({ singleData }: { singleData: IWorkout }) => {
+    
   return (
     <Link href={`/pages/workout/${singleData.id}`} className="overflow-hidden rounded-2xl border border-[#2A2D32] bg-[#191B20]">
       {/* Image */}
