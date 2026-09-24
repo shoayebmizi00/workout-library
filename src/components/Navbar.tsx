@@ -6,72 +6,77 @@ import ActiveNavLink from "./activateLinks/ActiveNavLinks";
 const Navbar = () => {
   const Nav_Links = (
     <>
-      <ActiveNavLink/>
+      <ActiveNavLink />
     </>
   );
+
   return (
-    <section className="">
-      <nav className="border-b border-[#9CA3AF]">
-        <div className="container mx-auto navbar bg-base-100 shadow-sm">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
+    <nav className="fixed top-0 left-0 z-50 w-full border-b border-[#9CA3AF] bg-base-100">
+      <div className="container mx-auto navbar bg-base-100 shadow-sm">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden"
+            >
+              <svg
+                aria-label="Menu"
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  aria-label="Menu"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {" "}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />{" "}
-                </svg>
-              </div>
-              <ul
-                tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                {Nav_Links}
-              </ul>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
             </div>
-            <Link
-              href="/"
-              className="btn btn-ghost items-center text-xl border border-[#9CA3AF]"
+
+            <ul
+              tabIndex={-1}
+              className="menu menu-sm dropdown-content z-50 mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
             >
-              <Image src="/logo.png" alt="Logo" width={25} height={25} />
-              <h3>FITLOG</h3>
-            </Link>
+              {Nav_Links}
+            </ul>
           </div>
-          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{Nav_Links}</ul>
-          </div>
-          <div className="navbar-end gap-4">
-            <Link
-              href="../pages/myplan"
-              className="badge p-4 text-lg font-semi-bold"
-            >
-              Plan
-            </Link>
-            <Link
-              href="../pages/myplan"
-              className="badge p-4 text-lg font-semi-bold"
-            >
-              Saved
-            </Link>
-          </div>
+
+          <Link
+            href="/"
+            className="btn btn-ghost items-center border border-[#9CA3AF] text-xl"
+          >
+            <Image src="/logo.png" alt="Logo" width={25} height={25} />
+            <h3>FITLOG</h3>
+          </Link>
         </div>
-      </nav>
-    </section>
+
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            {Nav_Links}
+          </ul>
+        </div>
+
+        <div className="navbar-end gap-4">
+          <Link
+            href="/pages/myplan"
+            className="badge p-4 text-lg font-semibold"
+          >
+            Plan
+          </Link>
+
+          <Link
+            href="/pages/myplan"
+            className="badge p-4 text-lg font-semibold"
+          >
+            Saved
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 };
 
