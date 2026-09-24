@@ -3,26 +3,47 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-interface ActiveNavLinkProps {
-  href: string;
-  children: React.ReactNode;
-}
-
-const ActiveNavLink = ({ href, children }: ActiveNavLinkProps) => {
+const ActiveNavLink = () => {
   const pathname = usePathname();
-  const active = pathname === href;
 
   return (
-    <Link
-      href={href}
-      className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
-        active
-          ? "bg-[#C2F800]/15 text-[#557800]"
-          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-      }`}
-    >
-      {children}
-    </Link>
+    <div className="flex gap-4 text-lg font-bold">
+
+      <Link
+        href="/"
+        className={
+          pathname === "/"
+            ? "text-[#C2F800]"
+            : "text-gray-100"
+        }
+      >
+        Home
+      </Link>
+
+
+      <Link
+        href="/pages/workout"
+        className={
+          pathname === "/pages/workout"
+            ? "text-[#C2F800]"
+            : "text-gray-100"
+        }
+      >
+        Workout
+      </Link>
+
+
+      <Link
+        href="/pages/myplan"
+        className={
+          pathname === "/pages/myplan"
+            ? "text-[#C2F800]"
+            : "text-gray-100"
+        }
+      >
+        My Plan
+      </Link>
+    </div>
   );
 };
 

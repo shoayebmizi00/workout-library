@@ -1,20 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import ActiveNavLink from "./activateLinks/ActiveNavLinks";
 
 const Navbar = () => {
   const Nav_Links = (
     <>
-      <li>
-        <Link href="../pages/myplan" className="text-lg">
-          Workouts
-        </Link>
-      </li>
-      <li>
-        <Link href="" className="text-lg">
-          My Plan
-        </Link>
-      </li>
+      <ActiveNavLink/>
     </>
   );
   return (
@@ -64,10 +56,16 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{Nav_Links}</ul>
           </div>
           <div className="navbar-end gap-4">
-            <Link href="../pages/myplan" className="badge p-4 text-lg font-semi-bold">
+            <Link
+              href="../pages/myplan"
+              className="badge p-4 text-lg font-semi-bold"
+            >
               Plan
             </Link>
-            <Link href='../pages/myplan' className="badge p-4 text-lg font-semi-bold">
+            <Link
+              href="../pages/myplan"
+              className="badge p-4 text-lg font-semi-bold"
+            >
               Saved
             </Link>
           </div>
