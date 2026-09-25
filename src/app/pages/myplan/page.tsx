@@ -3,11 +3,12 @@
 import { IWorkout } from "@/app/type";
 import PlanTabs from "@/components/PlanTabs";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaDumbbell, FaFire, FaStar, FaTrash } from "react-icons/fa";
 
-const MyPlanPageClient = () => {
+const MyPlanPage = () => {
   const context = React.useContext(WorkoutContext) as {
     todaysPlan: IWorkout[];
     savedWorkouts: IWorkout[];
@@ -195,9 +196,11 @@ const MyPlanPageClient = () => {
           IMAGE
       ========================== */}
                 <div className="h-24 w-36 shrink-0 overflow-hidden rounded-xl">
-                  <img
+                  <Image
                     src={workout.image}
                     alt={workout.name}
+                    width={144}
+                    height={96}
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                   />
                 </div>
@@ -298,4 +301,4 @@ const MyPlanPageClient = () => {
   );
 };
 
-export default MyPlanPageClient;
+export default MyPlanPage;
