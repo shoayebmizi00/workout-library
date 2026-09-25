@@ -10,7 +10,7 @@ const fitLogResponse = async () => {
 const WorkOut = async () => {
   const data = await fitLogResponse();
   return (
-    <section className="container mx-auto my-20">
+    <section className="container mx-auto my-25">
       <div className="mb-10 px-3">
         <h2 className="text-4xl font-bold">The Library</h2>
         <p className="text-xl mt-1">Twelve lifts covering every major muscle group.</p>

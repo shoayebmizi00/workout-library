@@ -39,7 +39,6 @@ const MyPlanPage = () => {
     });
   }, [activeWorkouts, sortBy]);
 
-
   const totalMinutes = visibleWorkouts.reduce(
     (sum, item) => sum + Number(item.duration),
     0,
@@ -66,6 +65,7 @@ const MyPlanPage = () => {
     <main className="min-h-screen bg-[#0D0F12] px-4 pb-12 pt-24 text-white sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
 
+        {/* Header */}
         <div>
           <h1 className="text-3xl font-bold uppercase tracking-wide text-gray-100 sm:text-4xl">
             My Plan
@@ -76,12 +76,15 @@ const MyPlanPage = () => {
           </p>
         </div>
 
-
+        {/* Summary */}
         <div className="mt-8 overflow-hidden rounded-2xl border border-[#292C31] bg-[#191B20]">
           <div className="grid grid-cols-1 sm:grid-cols-3">
+
             {/* Exercises */}
             <div className="border-b border-[#292C31] p-5 sm:border-b-0 sm:border-r">
-              <p className="text-xs text-gray-400">Exercises</p>
+              <p className="text-xs text-gray-400">
+                Exercises
+              </p>
 
               <p className="mt-2 text-3xl font-bold text-[#C2F800]">
                 {visibleWorkouts.length}
@@ -90,7 +93,9 @@ const MyPlanPage = () => {
 
             {/* Minutes */}
             <div className="border-b border-[#292C31] p-5 sm:border-b-0 sm:border-r">
-              <p className="text-xs text-gray-400">Minutes</p>
+              <p className="text-xs text-gray-400">
+                Minutes
+              </p>
 
               <p className="mt-2 text-3xl font-bold text-gray-200">
                 {totalMinutes}
@@ -99,21 +104,27 @@ const MyPlanPage = () => {
 
             {/* Calories */}
             <div className="p-5">
-              <p className="text-xs text-gray-400">Calories</p>
+              <p className="text-xs text-gray-400">
+                Calories
+              </p>
 
               <p className="mt-2 text-3xl font-bold text-gray-200">
                 {totalCalories}
               </p>
             </div>
+
           </div>
         </div>
 
-            {/* TABS + SORT */}
+        {/* Tabs + Sort */}
+        <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
 
-        <div className="mt-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <PlanTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          <PlanTabs
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
 
-          <div className="w-full sm:w-80">
+          <div className="w-full sm:w-64 md:w-80">
             <label
               htmlFor="sort"
               className="mb-2 block text-sm font-medium text-gray-300"
@@ -126,28 +137,33 @@ const MyPlanPage = () => {
               value={sortBy}
               onChange={(event) =>
                 setSortBy(
-                  event.target.value as "duration" | "calories" | "rating",
+                  event.target.value as
+                    | "duration"
+                    | "calories"
+                    | "rating",
                 )
               }
               className="w-full rounded-xl border border-[#3A3D42] bg-[#0D0F12] px-4 py-3 text-sm text-gray-200 outline-none transition focus:border-[#C2F800]"
             >
               <option value="duration">Duration</option>
-
               <option value="calories">Calories</option>
-
               <option value="rating">Rating</option>
             </select>
           </div>
         </div>
 
+        {/* Empty State */}
         {!visibleWorkouts.length ? (
           <div className="mt-8 flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-[#292C31] bg-[#191B20] px-5 text-center">
+
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C2F800]/10">
               <FaDumbbell className="text-xl text-[#C2F800]" />
             </div>
 
             <h2 className="mt-5 text-lg font-semibold uppercase tracking-wide text-gray-100">
-              {activeTab === "today" ? "Nothing here yet" : "No saved workouts"}
+              {activeTab === "today"
+                ? "Nothing here yet"
+                : "No saved workouts"}
             </h2>
 
             <p className="mt-2 max-w-md text-sm leading-6 text-gray-400">
@@ -164,15 +180,34 @@ const MyPlanPage = () => {
             </Link>
           </div>
         ) : (
-          // Workout Card
-          <div className="mt-8 space-y-3">
+
+          /* Workout Cards */
+          <div className="mt-8 space-y-4">
+
             {visibleWorkouts.map((workout) => (
               <div
                 key={workout.id}
-                className="group flex w-full items-center gap-4 rounded-2xl border border-[#292C31] bg-[#191B20] p-4 transition-all duration-300 hover:border-[#3A3D42]"
+                className="
+                  group flex w-full flex-col gap-4
+                  rounded-2xl border border-[#292C31]
+                  bg-[#191B20] p-4
+                  transition-all duration-300
+                  hover:border-[#3A3D42]
+
+                  sm:flex-row
+                  sm:items-center
+                "
               >
 
-                <div className="h-24 w-36 shrink-0 overflow-hidden rounded-xl">
+                {/* Image */}
+                <div
+                  className="
+                    h-48 w-full shrink-0
+                    overflow-hidden rounded-xl
+
+                    sm:h-24 sm:w-36
+                  "
+                >
                   <Image
                     src={workout.image}
                     alt={workout.name}
@@ -182,47 +217,61 @@ const MyPlanPage = () => {
                   />
                 </div>
 
-
-          {/* WORKOUT INFORMATION */}
-
+                {/* Workout Information */}
                 <div className="min-w-0 flex-1">
+
                   {/* Name */}
-                  <h3 className="truncate text-lg font-semibold uppercase tracking-wide text-gray-100">
+                  <h3 className="text-base font-semibold uppercase tracking-wide text-gray-100 sm:text-lg">
                     {workout.name}
                   </h3>
 
                   {/* Equipment */}
-                  <p className="mt-0.5 text-sm text-gray-400">
+                  <p className="mt-1 text-sm text-gray-400">
                     {workout.equipment}
                   </p>
 
                   {/* Stats */}
-                  <div className="mt-2 flex flex-wrap items-center gap-4 text-sm">
-                    {/* Duration */}
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm">
+
                     <span className="flex items-center gap-1.5 text-gray-300">
                       <span className="text-[#C2F800]">◷</span>
                       {workout.duration} min
                     </span>
 
-                    {/* Calories */}
                     <span className="flex items-center gap-1.5 text-gray-300">
                       <FaFire className="text-[#C2F800]" />
                       {workout.caloriesBurned} kcal
                     </span>
 
-                    {/* Rating */}
                     <span className="flex items-center gap-1.5 text-gray-300">
                       <FaStar className="text-[#C2F800]" />
                       {workout.rating}
                     </span>
+
                   </div>
                 </div>
 
-                <div className="flex shrink-0 items-center gap-2">
+                {/* Actions */}
+                <div
+                  className="
+                    flex w-full flex-wrap gap-2
+                    sm:w-auto sm:shrink-0
+                  "
+                >
+
                   {/* View Details */}
                   <Link
                     href={`/pages/workout/${workout.id}`}
-                    className="rounded-full border border-gray-300 px-4 py-2 text-xs font-medium text-gray-200 transition hover:border-white hover:bg-white hover:text-black"
+                    className="
+                      flex-1 rounded-full
+                      border border-gray-300
+                      px-3 py-2 text-center
+                      text-xs font-medium text-gray-200
+                      transition
+                      hover:border-white hover:bg-white hover:text-black
+
+                      sm:flex-none sm:px-4
+                    "
                   >
                     View Details
                   </Link>
@@ -231,10 +280,21 @@ const MyPlanPage = () => {
                   {activeTab === "today" && (
                     <button
                       onClick={() => handleMarkAsDone(workout.id)}
-                      className="flex items-center gap-2 rounded-full bg-[#C2F800] px-4 py-2 text-xs font-semibold text-black transition hover:bg-[#D5FF3D]"
+                      className="
+                        flex flex-1 items-center
+                        justify-center gap-2
+                        rounded-full
+                        bg-[#C2F800]
+                        px-3 py-2
+                        text-xs font-semibold text-black
+                        transition
+                        hover:bg-[#D5FF3D]
+
+                        sm:flex-none sm:px-4
+                      "
                     >
                       <span className="text-sm">✓</span>
-                      Mark as Done
+                      <span>Mark as Done</span>
                     </button>
                   )}
 
@@ -242,32 +302,25 @@ const MyPlanPage = () => {
                   {activeTab === "saved" && (
                     <button
                       onClick={() => handleRemoveSaved(workout.id)}
-                      className="flex items-center justify-center rounded-full border border-red-500 px-4 py-2 text-xs font-semibold text-red-400 transition hover:bg-red-500 hover:text-white"
+                      className="
+                        flex h-9 w-9
+                        items-center justify-center
+                        rounded-full
+                        border border-red-500
+                        text-red-400
+                        transition
+                        hover:bg-red-500 hover:text-white
+                      "
                       aria-label={`Remove ${workout.name} from saved workouts`}
                     >
                       <FaTrash />
                     </button>
                   )}
 
-                  {/* Close / Remove Icon */}
-                  <button
-                    onClick={() =>
-                      activeTab === "today"
-                        ? handleMarkAsDone(workout.id)
-                        : handleRemoveSaved(workout.id)
-                    }
-                    className="ml-1 flex h-8 w-8 items-center justify-center rounded-full text-xl text-gray-400 transition hover:bg-white/10 hover:text-white"
-                    aria-label={
-                      activeTab === "today"
-                        ? `Mark ${workout.name} as done`
-                        : `Remove ${workout.name}`
-                    }
-                  >
-                    ×
-                  </button>
                 </div>
               </div>
             ))}
+
           </div>
         )}
       </div>
