@@ -25,9 +25,6 @@ const MyPlanPage = () => {
   const activeWorkouts =
     activeTab === "today" ? context.todaysPlan : context.savedWorkouts;
 
-  // -----------------------------
-  // SORT WORKOUTS
-  // -----------------------------
   const visibleWorkouts = React.useMemo(() => {
     return [...activeWorkouts].sort((a, b) => {
       if (sortBy === "calories") {
@@ -42,9 +39,7 @@ const MyPlanPage = () => {
     });
   }, [activeWorkouts, sortBy]);
 
-  // -----------------------------
-  // TOTALS
-  // -----------------------------
+
   const totalMinutes = visibleWorkouts.reduce(
     (sum, item) => sum + Number(item.duration),
     0,
@@ -55,18 +50,12 @@ const MyPlanPage = () => {
     0,
   );
 
-  // -----------------------------
-  // MARK AS DONE
-  // -----------------------------
   const handleMarkAsDone = (workoutId: number) => {
     context.setTodaysPlan((current) =>
       current.filter(({ id }) => id !== workoutId),
     );
   };
 
-  // -----------------------------
-  // REMOVE SAVED WORKOUT
-  // -----------------------------
   const handleRemoveSaved = (workoutId: number) => {
     context.setSavedWorkouts((current) =>
       current.filter(({ id }) => id !== workoutId),
@@ -76,9 +65,7 @@ const MyPlanPage = () => {
   return (
     <main className="min-h-screen bg-[#0D0F12] px-4 pb-12 pt-24 text-white sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
-        {/* ========================================
-            HEADER
-        ======================================== */}
+
         <div>
           <h1 className="text-3xl font-bold uppercase tracking-wide text-gray-100 sm:text-4xl">
             My Plan
@@ -89,9 +76,7 @@ const MyPlanPage = () => {
           </p>
         </div>
 
-        {/* ========================================
-            SUMMARY
-        ======================================== */}
+
         <div className="mt-8 overflow-hidden rounded-2xl border border-[#292C31] bg-[#191B20]">
           <div className="grid grid-cols-1 sm:grid-cols-3">
             {/* Exercises */}
@@ -123,9 +108,8 @@ const MyPlanPage = () => {
           </div>
         </div>
 
-        {/* ========================================
-            TABS + SORT
-        ======================================== */}
+            {/* TABS + SORT */}
+
         <div className="mt-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <PlanTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
@@ -156,9 +140,6 @@ const MyPlanPage = () => {
           </div>
         </div>
 
-        {/* ========================================
-            EMPTY STATE
-        ======================================== */}
         {!visibleWorkouts.length ? (
           <div className="mt-8 flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-[#292C31] bg-[#191B20] px-5 text-center">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C2F800]/10">
@@ -183,18 +164,14 @@ const MyPlanPage = () => {
             </Link>
           </div>
         ) : (
-          /* ========================================
-              WORKOUT CARDS
-          ======================================== */
+          // Workout Card
           <div className="mt-8 space-y-3">
             {visibleWorkouts.map((workout) => (
               <div
                 key={workout.id}
                 className="group flex w-full items-center gap-4 rounded-2xl border border-[#292C31] bg-[#191B20] p-4 transition-all duration-300 hover:border-[#3A3D42]"
               >
-                {/* =========================
-          IMAGE
-      ========================== */}
+
                 <div className="h-24 w-36 shrink-0 overflow-hidden rounded-xl">
                   <Image
                     src={workout.image}
@@ -205,9 +182,9 @@ const MyPlanPage = () => {
                   />
                 </div>
 
-                {/* =========================
-          WORKOUT INFORMATION
-      ========================== */}
+
+          {/* WORKOUT INFORMATION */}
+
                 <div className="min-w-0 flex-1">
                   {/* Name */}
                   <h3 className="truncate text-lg font-semibold uppercase tracking-wide text-gray-100">
@@ -241,9 +218,6 @@ const MyPlanPage = () => {
                   </div>
                 </div>
 
-                {/* =========================
-          ACTIONS
-      ========================== */}
                 <div className="flex shrink-0 items-center gap-2">
                   {/* View Details */}
                   <Link
