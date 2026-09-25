@@ -29,9 +29,11 @@ const MyPlanPage = () => {
     if (sortBy === "calories") {
       return Number(b.caloriesBurned) - Number(a.caloriesBurned);
     }
+
     if (sortBy === "rating") {
       return Number(b.rating) - Number(a.rating);
     }
+
     return Number(b.duration) - Number(a.duration);
   });
 
@@ -45,12 +47,14 @@ const MyPlanPage = () => {
     0,
   );
 
+  // Mark workout as done
   const handleMarkAsDone = (workoutId: number) => {
     context.setTodaysPlan((current) =>
       current.filter(({ id }) => id !== workoutId),
     );
   };
 
+  // Remove workout from saved
   const handleRemoveSaved = (workoutId: number) => {
     context.setSavedWorkouts((current) =>
       current.filter(({ id }) => id !== workoutId),
@@ -81,6 +85,11 @@ const MyPlanPage = () => {
               <p className="mt-2 text-3xl font-bold text-[#C2F800]">
                 {visibleWorkouts.length}
               </p>
+
+              {/* Show limit */}
+              {activeTab === "today" && (
+                <p className="mt-1 text-xs text-gray-500">Maximum 5 lifts</p>
+              )}
             </div>
 
             {/* Minutes */}
@@ -126,7 +135,9 @@ const MyPlanPage = () => {
               className="w-full rounded-xl border border-[#3A3D42] bg-[#0D0F12] px-4 py-3 text-sm text-gray-200 outline-none transition focus:border-[#C2F800]"
             >
               <option value="duration">Duration</option>
+
               <option value="calories">Calories</option>
+
               <option value="rating">Rating</option>
             </select>
           </div>
@@ -178,7 +189,6 @@ const MyPlanPage = () => {
                   className="
                     h-48 w-full shrink-0
                     overflow-hidden rounded-xl
-
                     sm:h-24 sm:w-36
                   "
                 >
@@ -217,6 +227,7 @@ const MyPlanPage = () => {
 
                     <span className="flex items-center gap-1.5 text-gray-300">
                       <FaStar className="text-[#C2F800]" />
+
                       {workout.rating}
                     </span>
                   </div>
@@ -264,6 +275,7 @@ const MyPlanPage = () => {
                       "
                     >
                       <span className="text-sm">✓</span>
+
                       <span>Mark as Done</span>
                     </button>
                   )}
