@@ -1,14 +1,15 @@
-# Project Title: FitLog Workout Library
+# Project Title: 
+FitLog Workout Library
 
-# Description:
+## Description:
 This is a Workout tracking web application where people can track there daily activity to enhance there health issues. This application is made by NextJs mainly.
 
-# Technology use: 
+## Technology use: 
 1. Next.js Build the UI
 2. App router(Next.js) + Handle page navigation
 3. Tailwind CSS + Any component library Styling and responsiveness
 
-# Key feature: 
+## Key feature: 
 1. Browse almost all kinds of workout activity
 2. Add activity to daily plan
 3. Save activity for future plan
