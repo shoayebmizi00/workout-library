@@ -16,7 +16,7 @@ const WorkOut = async () => {
         <p className="text-xl mt-1">Twelve lifts covering every major muscle group.</p>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mx-2">
-        {data.slice(0, 9).map((singleData: IWorkout) => {
+        {data.map((singleData: IWorkout) => {
           return <WorkoutCard key={singleData.id} singleData={singleData} />;
         })}
       </div>

@@ -25,19 +25,15 @@ const MyPlanPage = () => {
   const activeWorkouts =
     activeTab === "today" ? context.todaysPlan : context.savedWorkouts;
 
-  const visibleWorkouts = React.useMemo(() => {
-    return [...activeWorkouts].sort((a, b) => {
-      if (sortBy === "calories") {
-        return Number(b.caloriesBurned) - Number(a.caloriesBurned);
-      }
-
-      if (sortBy === "rating") {
-        return Number(b.rating) - Number(a.rating);
-      }
-
-      return Number(b.duration) - Number(a.duration);
-    });
-  }, [activeWorkouts, sortBy]);
+  const visibleWorkouts = [...activeWorkouts].sort((a, b) => {
+    if (sortBy === "calories") {
+      return Number(b.caloriesBurned) - Number(a.caloriesBurned);
+    }
+    if (sortBy === "rating") {
+      return Number(b.rating) - Number(a.rating);
+    }
+    return Number(b.duration) - Number(a.duration);
+  });
 
   const totalMinutes = visibleWorkouts.reduce(
     (sum, item) => sum + Number(item.duration),
@@ -64,7 +60,6 @@ const MyPlanPage = () => {
   return (
     <main className="min-h-screen bg-[#0D0F12] px-4 pb-12 pt-24 text-white sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
-
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold uppercase tracking-wide text-gray-100 sm:text-4xl">
@@ -79,12 +74,9 @@ const MyPlanPage = () => {
         {/* Summary */}
         <div className="mt-8 overflow-hidden rounded-2xl border border-[#292C31] bg-[#191B20]">
           <div className="grid grid-cols-1 sm:grid-cols-3">
-
             {/* Exercises */}
             <div className="border-b border-[#292C31] p-5 sm:border-b-0 sm:border-r">
-              <p className="text-xs text-gray-400">
-                Exercises
-              </p>
+              <p className="text-xs text-gray-400">Exercises</p>
 
               <p className="mt-2 text-3xl font-bold text-[#C2F800]">
                 {visibleWorkouts.length}
@@ -93,9 +85,7 @@ const MyPlanPage = () => {
 
             {/* Minutes */}
             <div className="border-b border-[#292C31] p-5 sm:border-b-0 sm:border-r">
-              <p className="text-xs text-gray-400">
-                Minutes
-              </p>
+              <p className="text-xs text-gray-400">Minutes</p>
 
               <p className="mt-2 text-3xl font-bold text-gray-200">
                 {totalMinutes}
@@ -104,25 +94,18 @@ const MyPlanPage = () => {
 
             {/* Calories */}
             <div className="p-5">
-              <p className="text-xs text-gray-400">
-                Calories
-              </p>
+              <p className="text-xs text-gray-400">Calories</p>
 
               <p className="mt-2 text-3xl font-bold text-gray-200">
                 {totalCalories}
               </p>
             </div>
-
           </div>
         </div>
 
         {/* Tabs + Sort */}
         <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
-
-          <PlanTabs
-            activeTab={activeTab}
-            onTabChange={setActiveTab}
-          />
+          <PlanTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
           <div className="w-full sm:w-64 md:w-80">
             <label
@@ -137,10 +120,7 @@ const MyPlanPage = () => {
               value={sortBy}
               onChange={(event) =>
                 setSortBy(
-                  event.target.value as
-                    | "duration"
-                    | "calories"
-                    | "rating",
+                  event.target.value as "duration" | "calories" | "rating",
                 )
               }
               className="w-full rounded-xl border border-[#3A3D42] bg-[#0D0F12] px-4 py-3 text-sm text-gray-200 outline-none transition focus:border-[#C2F800]"
@@ -155,15 +135,12 @@ const MyPlanPage = () => {
         {/* Empty State */}
         {!visibleWorkouts.length ? (
           <div className="mt-8 flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-[#292C31] bg-[#191B20] px-5 text-center">
-
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C2F800]/10">
               <FaDumbbell className="text-xl text-[#C2F800]" />
             </div>
 
             <h2 className="mt-5 text-lg font-semibold uppercase tracking-wide text-gray-100">
-              {activeTab === "today"
-                ? "Nothing here yet"
-                : "No saved workouts"}
+              {activeTab === "today" ? "Nothing here yet" : "No saved workouts"}
             </h2>
 
             <p className="mt-2 max-w-md text-sm leading-6 text-gray-400">
@@ -180,10 +157,8 @@ const MyPlanPage = () => {
             </Link>
           </div>
         ) : (
-
           /* Workout Cards */
           <div className="mt-8 space-y-4">
-
             {visibleWorkouts.map((workout) => (
               <div
                 key={workout.id}
@@ -198,7 +173,6 @@ const MyPlanPage = () => {
                   sm:items-center
                 "
               >
-
                 {/* Image */}
                 <div
                   className="
@@ -219,7 +193,6 @@ const MyPlanPage = () => {
 
                 {/* Workout Information */}
                 <div className="min-w-0 flex-1">
-
                   {/* Name */}
                   <h3 className="text-base font-semibold uppercase tracking-wide text-gray-100 sm:text-lg">
                     {workout.name}
@@ -232,7 +205,6 @@ const MyPlanPage = () => {
 
                   {/* Stats */}
                   <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm">
-
                     <span className="flex items-center gap-1.5 text-gray-300">
                       <span className="text-[#C2F800]">◷</span>
                       {workout.duration} min
@@ -247,7 +219,6 @@ const MyPlanPage = () => {
                       <FaStar className="text-[#C2F800]" />
                       {workout.rating}
                     </span>
-
                   </div>
                 </div>
 
@@ -258,7 +229,6 @@ const MyPlanPage = () => {
                     sm:w-auto sm:shrink-0
                   "
                 >
-
                   {/* View Details */}
                   <Link
                     href={`/pages/workout/${workout.id}`}
@@ -316,11 +286,9 @@ const MyPlanPage = () => {
                       <FaTrash />
                     </button>
                   )}
-
                 </div>
               </div>
             ))}
-
           </div>
         )}
       </div>
